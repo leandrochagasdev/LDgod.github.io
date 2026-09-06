@@ -15,6 +15,86 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        
+        <!-- CSS Customizado para Melhorias Visuais -->
+        <style>
+            /* Novo Cabeçalho Estilo Tech */
+            header.masthead-tech {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                padding-top: calc(6rem + 74px);
+                padding-bottom: 6rem;
+                position: relative;
+                overflow: hidden;
+            }
+            /* Padrão de pontos no fundo do cabeçalho */
+            header.masthead-tech::before {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; width: 100%; height: 100%;
+                background-image: radial-gradient(#475569 1.5px, transparent 1.5px);
+                background-size: 25px 25px;
+                opacity: 0.3;
+                z-index: 1;
+            }
+            header.masthead-tech .container {
+                position: relative;
+                z-index: 2;
+            }
+            .masthead-avatar {
+                border: 4px solid #38bdf8;
+                box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+                transition: transform 0.3s ease;
+            }
+            .masthead-avatar:hover {
+                transform: scale(1.05);
+            }
+            
+            /* Melhorias nos Modais de Projeto */
+            .portfolio-modal .modal-content {
+                border-radius: 1rem;
+                border: none;
+                box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            }
+            .portfolio-modal .modal-body {
+                padding: 3rem 2rem !important;
+            }
+            .tech-badge {
+                font-size: 0.85rem;
+                padding: 0.6rem 1.2rem;
+                border-radius: 50px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                background-color: #f1f5f9;
+                color: #334155;
+                border: 1px solid #e2e8f0;
+                display: inline-block;
+                margin: 0.25rem;
+                transition: all 0.2s ease;
+            }
+            .tech-badge:hover {
+                background-color: #e2e8f0;
+            }
+            .tech-badge i {
+                margin-right: 6px;
+                font-size: 1.1em;
+            }
+            .modal-desc-text {
+                line-height: 1.8; 
+                font-size: 1.1rem; 
+                color: #475569;
+                text-align: left;
+            }
+            
+            /* Botões mais arredondados e interativos */
+            .btn {
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -35,25 +115,25 @@
             </div>
         </nav>
         
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
+        <!-- Masthead (Atualizado com Fundo Tech) -->
+        <header class="masthead-tech text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Foto de Perfil -->
-                <img class="masthead-avatar mb-5" src="assets/img/sua-foto.jpg" alt="Leandro Chagas" style="border-radius: 50%; object-fit: cover;" />
+                <img class="masthead-avatar mb-5" src="assets/img/sua-foto.jpg" alt="Leandro Chagas" style="border-radius: 50%; object-fit: cover; width: 250px; height: 250px;" />
                 
                 <!-- Título -->
-                <h1 class="masthead-heading text-uppercase mb-0">Leandro Chagas</h1>
+                <h1 class="masthead-heading text-uppercase mb-0" style="font-weight: 700; letter-spacing: 2px;">Leandro Chagas</h1>
                 
                 <!-- Divisor Customizado -->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-code"></i></div>
-                    <div class="divider-custom-line"></div>
+                <div class="divider-custom divider-light mt-4 mb-4">
+                    <div class="divider-custom-line" style="background-color: rgba(255,255,255,0.3);"></div>
+                    <div class="divider-custom-icon" style="color: #38bdf8;"><i class="fas fa-code"></i></div>
+                    <div class="divider-custom-line" style="background-color: rgba(255,255,255,0.3);"></div>
                 </div>
                 
                 <!-- Subtítulos -->
-                <p class="masthead-subheading font-weight-light mb-0">Desenvolvedor Júnior | Automação e Qualidade</p>
-                <p class="masthead-subheading font-weight-light mt-3" style="font-size: 1.2rem;">
+                <p class="masthead-subheading font-weight-light mb-0" style="font-size: 1.5rem;">Desenvolvedor Júnior | Automação e Qualidade</p>
+                <p class="font-weight-light mt-3" style="font-size: 1.1rem; color: #94a3b8;">
                     Python • JavaScript • Análise e Desenvolvimento de Sistemas
                 </p>
             </div>
@@ -62,25 +142,21 @@
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
-                <!-- Portfolio Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Projetos</h2>
-                <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-laptop-code"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <!-- Portfolio Grid Items-->
+                
                 <div class="row justify-content-center">
-                    
                     <!-- Portfolio Item 1 (Python / Geoforce) -->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 rounded" style="border-radius: 1rem !important;">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <!-- Bloco de Ícone Customizado no lugar da imagem -->
-                            <div class="d-flex align-items-center justify-content-center w-100 rounded" style="height: 250px; background-color: #2c3e50;">
+                            <div class="d-flex align-items-center justify-content-center w-100 shadow-sm" style="height: 250px; background-color: #2c3e50; border-radius: 1rem;">
                                 <i class="fab fa-python fa-7x text-white"></i>
                             </div>
                         </div>
@@ -89,11 +165,10 @@
                     <!-- Portfolio Item 2 (Power Automate / Checklists) -->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 rounded" style="border-radius: 1rem !important;">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <!-- Bloco de Ícone Customizado no lugar da imagem -->
-                            <div class="d-flex align-items-center justify-content-center w-100 rounded" style="height: 250px; background-color: #1abc9c;">
+                            <div class="d-flex align-items-center justify-content-center w-100 shadow-sm" style="height: 250px; background-color: #1abc9c; border-radius: 1rem;">
                                 <i class="fas fa-clipboard-check fa-7x text-white"></i>
                             </div>
                         </div>
@@ -102,16 +177,14 @@
                     <!-- Portfolio Item 3 (JavaScript / Ordens de Serviço) -->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 rounded" style="border-radius: 1rem !important;">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <!-- Bloco de Ícone Customizado no lugar da imagem -->
-                            <div class="d-flex align-items-center justify-content-center w-100 rounded" style="height: 250px; background-color: #f39c12;">
+                            <div class="d-flex align-items-center justify-content-center w-100 shadow-sm" style="height: 250px; background-color: #f39c12; border-radius: 1rem;">
                                 <i class="fab fa-js-square fa-7x text-white"></i>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -125,19 +198,19 @@
                     <div class="divider-custom-icon"><i class="fas fa-user"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 ms-auto">
-                        <p class="lead">
+                <div class="row mt-4">
+                    <div class="col-lg-5 ms-auto">
+                        <p class="lead" style="line-height: 1.8;">
                             Com uma base sólida em Gestão da Qualidade e experiência prática em inspeção técnica de equipamentos, desenvolvi uma visão analítica rigorosa. Minha vivência em ambientes que exigem precisão técnica e conformidade (como normas DNV e IMO) foi o motor para a minha transição para a área de Tecnologia da Informação.
                         </p>
                     </div>
-                    <div class="col-lg-4 me-auto">
-                        <p class="lead">
+                    <div class="col-lg-5 me-auto">
+                        <p class="lead" style="line-height: 1.8;">
                             Atualmente cursando Análise e Desenvolvimento de Sistemas (ADS), aplico essa mesma atenção aos detalhes na criação de softwares. Meu foco é desenvolver soluções eficientes, automatizar tarefas repetitivas e construir lógicas de programação confiáveis que resolvem problemas reais de operação e negócio.
                         </p>
                     </div>
                 </div>
-                <div class="text-center mt-4">
+                <div class="text-center mt-5">
                     <a class="btn btn-xl btn-outline-light" href="LINK_DO_SEU_CURRICULO_EM_PDF" target="_blank">
                         <i class="fas fa-download me-2"></i>
                         Baixar Currículo
@@ -149,29 +222,26 @@
         <!-- Contact Section-->
         <section class="page-section" id="contact">
             <div class="container">
-                <!-- Contact Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contato</h2>
-                <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-envelope"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
                 
-                <!-- Contact Buttons (Substituiu o formulário) -->
-                <div class="row justify-content-center">
+                <div class="row justify-content-center mt-4">
                     <div class="col-lg-8 col-xl-7 text-center">
-                        <p class="lead mb-5">
-                            Interessado em conversar sobre tecnologia, automação de processos ou novas oportunidades? Fique à vontade para me mandar uma mensagem!
+                        <p class="lead mb-5" style="color: #475569;">
+                            Interessado em conversar sobre tecnologia, automação de processos ou novas oportunidades? Fique à vontade para me mandar uma mensagem pelas redes abaixo!
                         </p>
-                        <!-- Botões de Contato -->
-                        <a class="btn btn-primary btn-xl mb-3 me-2" href="https://linkedin.com/in/leandro-chagas-4a355b131" target="_blank">
+                        <!-- Botões de Contato Modernizados -->
+                        <a class="btn btn-primary btn-xl mb-3 me-2" href="https://linkedin.com/in/leandro-chagas-4a355b131" target="_blank" style="background-color: #0077b5; border: none;">
                             <i class="fab fa-linkedin-in me-2"></i> LinkedIn
                         </a>
                         <a class="btn btn-dark btn-xl mb-3 me-2" href="https://github.com/LDgod" target="_blank">
                             <i class="fab fa-github me-2"></i> GitHub
                         </a>
-                        <a class="btn btn-success btn-xl mb-3" href="https://wa.me/55SEUNUMERODEWHATSAPP" target="_blank">
+                        <a class="btn btn-success btn-xl mb-3" href="https://wa.me/55SEUNUMERODEWHATSAPP" target="_blank" style="background-color: #25D366; border: none;">
                             <i class="fab fa-whatsapp me-2"></i> WhatsApp
                         </a>
                     </div>
@@ -183,64 +253,55 @@
         <footer class="footer text-center">
             <div class="container">
                 <div class="row">
-                    <!-- Footer Location-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Localização</h4>
-                        <p class="lead mb-0">
-                            Macaé, RJ
-                            <br />
-                            Brasil
-                        </p>
+                        <p class="lead mb-0">Macaé, RJ <br /> Brasil</p>
                     </div>
-                    <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Redes</h4>
                         <a class="btn btn-outline-light btn-social mx-1" href="https://linkedin.com/in/leandro-chagas-4a355b131"><i class="fab fa-fw fa-linkedin-in"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/LDgod"><i class="fab fa-fw fa-github"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://wa.me/55SEUNUMERODEWHATSAPP"><i class="fab fa-fw fa-whatsapp"></i></a>
                     </div>
-                    <!-- Footer About Text-->
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4">Sobre o Portfólio</h4>
-                        <p class="lead mb-0">
-                            Página criada para demonstrar projetos práticos em programação, desenvolvida com o template MIT licenciado da 
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>.
+                        <p class="lead mb-0" style="font-size: 1rem;">
+                            Página criada para demonstrar projetos práticos em programação, desenvolvida com base no template MIT da <a href="http://startbootstrap.com">Start Bootstrap</a>.
                         </p>
                     </div>
                 </div>
             </div>
         </footer>
-
-        <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
             <div class="container"><small>Copyright &copy; Leandro Chagas 2026</small></div>
         </div>
 
-        <!-- Portfolio Modals-->
-        <!-- Portfolio Modal 1-->
+        <!-- PORTFOLIO MODALS (VISUAL LIMPO E TECH BADGES) -->
+        
+        <!-- Modal 1: Automação Python -->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-lg"> <!-- Mudou de xl para lg para não ficar esticado -->
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
                     <div class="modal-body text-center pb-5">
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Automação de Dados Geoforce</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+                                <div class="col-lg-10">
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-4">Automação de Dados Geoforce</h2>
+                                    
+                                    <!-- Tech Badges substituem a imagem gigante -->
+                                    <div class="mb-5">
+                                        <span class="tech-badge"><i class="fab fa-python" style="color: #306998;"></i> Python</span>
+                                        <span class="tech-badge"><i class="fas fa-box" style="color: #64748b;"></i> PyInstaller</span>
+                                        <span class="tech-badge"><i class="fas fa-file-pdf" style="color: #ef4444;"></i> Manipulação de PDF</span>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="Interface ou Logo da Automação Geoforce" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Desenvolvimento de uma aplicação desktop em Python (compilada como executável com PyInstaller) para automatizar o processamento de certificados de inspeção em formato PDF. O script extrai os dados e sincroniza as atualizações de conformidade dos equipamentos diretamente na plataforma Geoforce. Essa solução eliminou a entrada manual de dados, reduzindo drasticamente o tempo operacional e mitigando falhas humanas no processo de qualidade.</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Fechar Janela
+                                    
+                                    <!-- Texto alinhado à esquerda para facilitar leitura -->
+                                    <p class="mb-5 modal-desc-text">
+                                        Desenvolvimento de uma aplicação desktop em Python (compilada como executável com PyInstaller) para automatizar o processamento de certificados de inspeção em formato PDF. O script extrai os dados e sincroniza as atualizações de conformidade dos equipamentos diretamente na plataforma Geoforce. Essa solução eliminou a entrada manual de dados, reduzindo drasticamente o tempo operacional e mitigando falhas humanas no processo de qualidade.
+                                    </p>
+                                    
+                                    <button class="btn btn-primary px-4 py-2" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i> Fechar Projeto
                                     </button>
                                 </div>
                             </div>
@@ -250,30 +311,30 @@
             </div>
         </div>
 
-        <!-- Portfolio Modal 2-->
+        <!-- Modal 2: Checklists Power Automate -->
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
                     <div class="modal-body text-center pb-5">
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Integração de Checklists Geoforce</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+                                <div class="col-lg-10">
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-4">Integração de Checklists Geoforce</h2>
+                                    
+                                    <!-- Tech Badges -->
+                                    <div class="mb-5">
+                                        <span class="tech-badge"><i class="fas fa-bolt" style="color: #0078d4;"></i> Power Automate</span>
+                                        <span class="tech-badge"><i class="fab fa-python" style="color: #306998;"></i> Python</span>
+                                        <span class="tech-badge"><i class="fab fa-microsoft" style="color: #6264a7;"></i> Microsoft Teams</span>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="Demonstração da Gestão de Frota" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Desenvolvimento de um ecossistema automatizado utilizando Power Automate e Python para o fluxo de checklists de inspeção. A solução utiliza o Power Automate para monitorar o Microsoft Teams, capturando novos PDFs e acionando feedbacks automáticos via reações. Em seguida, uma aplicação Python (com interface gráfica e lógica de validação) processa os certificados (como DNV e DPC) e sincroniza instantaneamente informações de conformidade, dados de GPS e regras complexas de compartilhamento de clientes (como Clariant e Champion) diretamente na plataforma Geoforce. O projeto eliminou a dependência de processos manuais, garantindo rastreabilidade e extrema precisão técnica.</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Fechar Janela
+                                    
+                                    <p class="mb-5 modal-desc-text">
+                                        Desenvolvimento de um ecossistema automatizado utilizando Power Automate e Python para o fluxo de checklists de inspeção. A solução utiliza o Power Automate para monitorar o Microsoft Teams, capturando novos PDFs e acionando feedbacks automáticos via reações. Em seguida, uma aplicação Python (com interface gráfica e lógica de validação) processa os certificados (como DNV e DPC) e sincroniza instantaneamente informações de conformidade, dados de GPS e regras complexas de compartilhamento de clientes (como Clariant e Champion) diretamente na plataforma Geoforce. O projeto eliminou a dependência de processos manuais, garantindo rastreabilidade e extrema precisão técnica.
+                                    </p>
+                                    
+                                    <button class="btn btn-primary px-4 py-2" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i> Fechar Projeto
                                     </button>
                                 </div>
                             </div>
@@ -283,30 +344,30 @@
             </div>
         </div>
 
-        <!-- Portfolio Modal 3-->
+        <!-- Modal 3: OS JavaScript -->
         <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
                     <div class="modal-body text-center pb-5">
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Sistema de Ordens de Serviço</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+                                <div class="col-lg-10">
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-4">Sistema de Ordens de Serviço</h2>
+                                    
+                                    <!-- Tech Badges -->
+                                    <div class="mb-5">
+                                        <span class="tech-badge"><i class="fab fa-js-square" style="color: #f7df1e;"></i> JavaScript</span>
+                                        <span class="tech-badge"><i class="fab fa-html5" style="color: #e34f26;"></i> HTML/CSS</span>
+                                        <span class="tech-badge"><i class="fas fa-network-wired" style="color: #64748b;"></i> Lógica de Workflow</span>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="Interface do Sistema de Ordens de Serviço" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Desenvolvimento de lógicas e ferramentas de workflow utilizando JavaScript com foco no controle de ordens de serviço de equipamentos. O projeto aplica fundamentos de desenvolvimento web full-stack para criar fluxos consistentes que otimizam a criação, o acompanhamento e o fechamento de requisições técnicas de manutenção.</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Fechar Janela
+                                    
+                                    <p class="mb-5 modal-desc-text">
+                                        Desenvolvimento de lógicas e ferramentas de workflow utilizando JavaScript com foco no controle de ordens de serviço de equipamentos. O projeto aplica fundamentos de desenvolvimento web full-stack para criar fluxos consistentes que otimizam a criação, o acompanhamento e o fechamento de requisições técnicas de manutenção.
+                                    </p>
+                                    
+                                    <button class="btn btn-primary px-4 py-2" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i> Fechar Projeto
                                     </button>
                                 </div>
                             </div>
