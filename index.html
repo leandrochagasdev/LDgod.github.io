@@ -2,406 +2,344 @@
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Leandro Chagas | Portfólio</title>
-    
-    <!-- Google Fonts: Inter (Fonte ultra moderna) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leandro Chagas | dev</title>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS Customizado: Dark UI Estilo Davin Yoga -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono&display=swap');
+
         :root {
-            --bg-main: #09090b;
-            --bg-card: #18181b;
-            --bg-glass: rgba(24, 24, 27, 0.7);
-            --border-color: #27272a;
-            --text-main: #fafafa;
-            --text-muted: #a1a1aa;
-            --accent-1: #06b6d4; /* Cyan */
-            --accent-2: #3b82f6; /* Blue */
+            --bg-color: #050505;
+            --grid-color: rgba(255, 255, 255, 0.04);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #38bdf8;
         }
 
         body {
-            background-color: var(--bg-main);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            /* Grid Background IDêntico ao vídeo */
+            background-image: 
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* Navbar Glassmorphism */
-        .navbar {
-            background: var(--bg-glass);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-sizing: border-box;
+            backdrop-filter: blur(5px);
         }
-        .navbar-brand, .nav-link { color: var(--text-main) !important; font-weight: 600; }
-        .nav-link:hover { color: var(--accent-1) !important; }
-
-        /* Text Gradients */
-        .text-gradient {
-            background: linear-gradient(to right, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo { font-family: 'Space Mono', monospace; font-size: 1.2rem; font-weight: 700; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
+        .nav-links a:hover { color: var(--text-main); }
 
-        /* Hero Section */
-        .hero-section {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            min-height: 100vh;
+        /* Hero Section Layout */
+        .hero {
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            position: relative;
         }
 
-        /* Efeito de Crachá (ID Card) igual ao vídeo */
-        .id-card-wrapper {
-            position: relative;
+        /* Left Side: Text and Animations */
+        .hero-text {
+            max-width: 600px;
+            z-index: 10;
+        }
+        .status {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status::before {
+            content: '';
             display: inline-block;
-            margin-top: 20px;
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
         }
-        .lanyard {
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 90px;
-            background: linear-gradient(to bottom, #111, #222);
-            z-index: 0;
-            border-radius: 4px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        .name {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0 0 10px 0;
+            letter-spacing: -2px;
         }
-        .id-card {
+        /* Efeito Typing */
+        .typing-wrapper {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            min-height: 35px;
+        }
+        .desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+        .tech-stack {
+            display: flex;
+            gap: 15px;
+        }
+        .tech-pill {
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s;
+        }
+        .tech-pill:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        /* Right Side: 3D Lanyard & Card */
+        .card-scene {
+            perspective: 1500px;
+            width: 400px;
+            height: 600px;
+            display: flex;
+            justify-content: center;
             position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            z-index: 1;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        /* Pêndulo (Balanço da fita) */
+        .pendulum {
+            transform-origin: top center;
+            animation: swing 6s ease-in-out infinite alternate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Fita do crachá */
+        .lanyard {
+            width: 25px;
+            height: 180px;
+            background: linear-gradient(to right, #111, #222, #111);
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+        }
+        .lanyard::after {
+            content: 'GEOF / QMS';
+            position: absolute;
+            color: rgba(255,255,255,0.2);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            top: 20px;
+            letter-spacing: 5px;
+        }
+        .clip {
+            width: 40px;
+            height: 20px;
+            background: #444;
+            border-radius: 5px;
+            margin-top: -5px;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* O Cartão 3D */
+        .id-card-3d {
             width: 280px;
-            transition: transform 0.3s ease;
+            height: 400px;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out; /* Suaviza o movimento do mouse */
+            margin-top: -10px;
         }
-        .id-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
-            border-color: var(--accent-2);
-        }
-        .id-card-hole {
+        .id-hole {
             width: 60px;
             height: 12px;
-            background: var(--bg-main);
+            background: var(--bg-color);
             border-radius: 10px;
-            margin: 0 auto 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .id-card img {
-            border-radius: 12px;
+        .id-photo {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 15px;
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.3s;
+        }
+        .id-card-3d:hover .id-photo {
+            filter: grayscale(0%);
+        }
+        .id-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .id-role {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-top: 5px;
         }
 
-        /* Cards Genéricos (Sobre e Projetos) */
-        .tech-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-        .tech-card:hover {
-            border-color: var(--accent-1);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1);
+        /* Animação do Pêndulo */
+        @keyframes swing {
+            0% { transform: rotate(3deg); }
+            100% { transform: rotate(-3deg); }
         }
 
-        /* Tech Badges (Tecnologias) */
-        .tech-badge {
-            background-color: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-muted);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin: 4px;
-            display: inline-block;
-        }
-
-        /* Botões Modernos */
-        .btn-modern {
-            background: linear-gradient(to right, var(--accent-1), var(--accent-2));
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: opacity 0.3s ease;
-        }
-        .btn-modern:hover {
-            opacity: 0.9;
-            color: white;
-        }
-        .btn-outline-modern {
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-outline-modern:hover {
-            border-color: var(--accent-1);
-            color: var(--accent-1);
-        }
-
-        /* Modais Modernizados (Fim da tela gigante) */
-        .modal-content {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--text-main);
-        }
-        .modal-header {
-            border-bottom: 1px solid var(--border-color);
-        }
-        .btn-close {
-            filter: invert(1) grayscale(100%) brightness(200%);
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 100px; }
+            .tech-stack { justify-content: center; flex-wrap: wrap; }
+            .card-scene { margin-top: 50px; height: 500px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-<body id="page-top">
+<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="#page-top">LC.</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Projetos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-                </ul>
-            </div>
+    <nav>
+        <div class="logo">lc.dev</div>
+        <div class="nav-links">
+            <a href="#about">Sobre</a>
+            <a href="#portfolio">Projetos</a>
+            <a href="#contact">Contato</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Textos -->
-                <div class="col-lg-7 order-2 order-lg-1 mt-5 mt-lg-0 text-center text-lg-start">
-                    <p class="text-uppercase mb-2" style="color: var(--accent-1); font-weight: 600; letter-spacing: 2px;">Bem-vindo ao meu Portfólio</p>
-                    <h1 class="display-3 fw-bold mb-3">Olá, sou <br><span class="text-gradient">Leandro Chagas</span></h1>
-                    <h2 class="h4 mb-4" style="color: var(--text-muted);">Desenvolvedor Júnior | Automação e Qualidade</h2>
-                    <p class="mb-5" style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 600px;">
-                        Estudante de Análise e Desenvolvimento de Sistemas. Conecto minha experiência prática em gestão da qualidade e inspeção técnica com programação para criar automações robustas e sistemas eficientes.
-                    </p>
-                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                        <a href="LINK_DO_CURRICULO_PDF" class="btn-modern text-decoration-none">Download CV</a>
-                        <a href="https://github.com/LDgod" target="_blank" class="btn-outline-modern text-decoration-none"><i class="fab fa-github me-2"></i>GitHub</a>
-                    </div>
-                </div>
-                
-                <!-- ID Card Visual -->
-                <div class="col-lg-5 order-1 order-lg-2 text-center">
-                    <div class="id-card-wrapper">
-                        <div class="lanyard"></div>
-                        <div class="id-card">
-                            <div class="id-card-hole"></div>
-                            <img src="assets/img/sua-foto.jpg" alt="Leandro Chagas">
-                            <h4 class="fw-bold mb-1">Leandro</h4>
-                            <p style="color: var(--accent-1); font-size: 0.9rem; margin-bottom: 0;">Sistemas de Informação</p>
-                        </div>
-                    </div>
+    <section class="hero">
+        <div class="hero-text">
+            <div class="status">AVAILABLE FOR WORK</div>
+            <h1 class="name">Leandro<br>Chagas</h1>
+            
+            <div class="typing-wrapper">
+                <span id="typewriter"></span><span style="animation: blink 1s infinite;">|</span>
+            </div>
+            
+            <p class="desc">
+                Conecto experiência prática em gestão de qualidade (DNV/IMO) com programação para criar automações robustas. Transformo dados complexos e trabalho manual em sistemas eficientes.
+            </p>
+            
+            <div class="tech-stack">
+                <div class="tech-pill">Python</div>
+                <div class="tech-pill">JavaScript</div>
+                <div class="tech-pill">Power Automate</div>
+            </div>
+        </div>
+
+        <!-- Estrutura do Crachá 3D (Substitui o Three.js) -->
+        <div class="card-scene" id="scene">
+            <div class="pendulum">
+                <div class="lanyard"></div>
+                <div class="clip"></div>
+                <div class="id-card-3d" id="card3d">
+                    <div class="id-hole"></div>
+                    <!-- Coloque sua foto na pasta correta -->
+                    <img src="assets/img/sua-foto.jpg" alt="Leandro Chagas" class="id-photo">
+                    <h2 class="id-name">Leandro</h2>
+                    <div class="id-role">Sistemas de Informação</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sobre Mim -->
-    <section class="py-5" id="about">
-        <div class="container">
-            <div class="tech-card">
-                <h2 class="fw-bold mb-4">Sobre Mim</h2>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p style="color: var(--text-muted); line-height: 1.8;">
-                            Com uma base sólida em Gestão da Qualidade e experiência prática em inspeção técnica de equipamentos (normas DNV e IMO), desenvolvi uma visão analítica rigorosa. Essa vivência é o motor para a minha atuação na área de Tecnologia da Informação.
-                        </p>
-                    </div>
-                    <div class="col-lg-6">
-                        <p style="color: var(--text-muted); line-height: 1.8;">
-                            Aplico essa mesma atenção aos detalhes na criação de softwares. Meu foco é desenvolver soluções eficientes, automatizar tarefas repetitivas e construir lógicas de programação confiáveis que resolvem problemas reais de operação e negócio.
-                        </p>
-                    </div>
-                </div>
-                
-                <h5 class="fw-bold mt-4 mb-3">Skills & Tecnologias</h5>
-                <div>
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">JavaScript</span>
-                    <span class="tech-badge">Power Automate</span>
-                    <span class="tech-badge">Microsoft Excel (Avançado)</span>
-                    <span class="tech-badge">PyInstaller</span>
-                    <span class="tech-badge">SharePoint / Lists</span>
-                    <span class="tech-badge">Análise DNV 2.7-1</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Lógica 1: Efeito Typing (Máquina de Escrever)
+        const textToType = "Desenvolvedor Júnior _";
+        const typeTarget = document.getElementById("typewriter");
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < textToType.length) {
+                typeTarget.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        // Inicia a digitação após 1 segundo
+        setTimeout(typeWriter, 1000);
 
-    <!-- Projetos -->
-    <section class="py-5" id="portfolio">
-        <div class="container">
-            <h2 class="fw-bold mb-5 text-center">Projetos Selecionados</h2>
-            <div class="row g-4">
-                
-                <!-- Card Projeto 1 -->
-                <div class="col-lg-4">
-                    <div class="tech-card text-center" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalProj1">
-                        <i class="fab fa-python fa-4x mb-4" style="color: var(--accent-1);"></i>
-                        <h4 class="fw-bold">Automação Geoforce</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Automação desktop para processamento de certificados PDF e sincronização.</p>
-                        <span class="text-gradient fw-bold" style="font-size: 0.9rem;">Ver Detalhes &rarr;</span>
-                    </div>
-                </div>
+        // Lógica 2: Física 3D Interativa no Crachá
+        const scene = document.getElementById('scene');
+        const card = document.getElementById('card3d');
 
-                <!-- Card Projeto 2 -->
-                <div class="col-lg-4">
-                    <div class="tech-card text-center" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalProj2">
-                        <i class="fas fa-clipboard-check fa-4x mb-4" style="color: var(--accent-2);"></i>
-                        <h4 class="fw-bold">Integração Checklists</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Ecossistema com Power Automate e Teams para fluxo de inspeção.</p>
-                        <span class="text-gradient fw-bold" style="font-size: 0.9rem;">Ver Detalhes &rarr;</span>
-                    </div>
-                </div>
+        scene.addEventListener('mousemove', (e) => {
+            // Pega o tamanho e posição da área interativa
+            const rect = scene.getBoundingClientRect();
+            // Calcula o centro do card
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Calcula a posição do mouse em relação ao centro (valores negativos e positivos)
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            // Define o limite de rotação (dividir por um número maior diminui o efeito)
+            const rotateX = (mouseY / (rect.height / 2)) * -15; 
+            const rotateY = (mouseX / (rect.width / 2)) * 15;
 
-                <!-- Card Projeto 3 -->
-                <div class="col-lg-4">
-                    <div class="tech-card text-center" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalProj3">
-                        <i class="fab fa-js-square fa-4x mb-4" style="color: #f7df1e;"></i>
-                        <h4 class="fw-bold">Ordens de Serviço</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">Lógicas de workflow web para requisições técnicas de manutenção.</p>
-                        <span class="text-gradient fw-bold" style="font-size: 0.9rem;">Ver Detalhes &rarr;</span>
-                    </div>
-                </div>
+            // Aplica a transformação 3D no cartão
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
 
-            </div>
-        </div>
-    </section>
+        // Quando o mouse sai da área, o cartão volta suavemente para a posição zero
+        scene.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            card.style.transition = `transform 0.5s ease`;
+        });
 
-    <!-- Contato -->
-    <section class="py-5 mb-5" id="contact">
-        <div class="container">
-            <div class="tech-card text-center">
-                <h2 class="fw-bold mb-4">Vamos Conversar?</h2>
-                <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto 30px;">
-                    Interessado em conversar sobre tecnologia, automação de processos ou novas oportunidades? Fique à vontade para me mandar uma mensagem.
-                </p>
-                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="https://linkedin.com/in/leandro-chagas-4a355b131" target="_blank" class="btn-outline-modern text-decoration-none">
-                        <i class="fab fa-linkedin-in me-2"></i> LinkedIn
-                    </a>
-                    <a href="https://wa.me/55SEUNUMERODEWHATSAPP" target="_blank" class="btn-outline-modern text-decoration-none">
-                        <i class="fab fa-whatsapp me-2"></i> WhatsApp
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-center py-4" style="border-top: 1px solid var(--border-color);">
-        <div class="container">
-            <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">&copy; 2026 Leandro Chagas. Desenvolvido com HTML, CSS e Bootstrap 5.</p>
-        </div>
-    </footer>
-
-
-    <!-- MODAIS REFORMULADOS (Pequenos, Limpos e Diretos) -->
-    
-    <!-- Modal 1 -->
-    <div class="modal fade" id="modalProj1" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold">Automação de Dados Geoforce</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">PyInstaller</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        Desenvolvimento de uma aplicação desktop em Python (compilada como executável) para automatizar o processamento de certificados de inspeção em formato PDF. O script extrai os dados e sincroniza as atualizações de conformidade diretamente na plataforma Geoforce, eliminando entrada manual e reduzindo tempo operacional.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div class="modal fade" id="modalProj2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold">Integração de Checklists</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <span class="tech-badge">Power Automate</span>
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">MS Teams</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        Solução automatizada onde o Power Automate monitora o MS Teams capturando PDFs. Um script Python processa os certificados (DNV e DPC) e sincroniza informações de conformidade, GPS e regras de compartilhamento de clientes (Clariant, Champion) direto na plataforma, garantindo extrema precisão técnica.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3 -->
-    <div class="modal fade" id="modalProj3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content p-2">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold">Sistema de Ordens de Serviço</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Web Full-stack</span>
-                    </div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                        Desenvolvimento de ferramentas de workflow utilizando JavaScript para controle de OS de equipamentos. Criação de fluxos consistentes que otimizam o acompanhamento e fechamento de requisições técnicas.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        // Remove a transição suave durante o movimento para não gerar atraso visual (lag)
+        scene.addEventListener('mouseenter', () => {
+            card.style.transition = `transform 0.1s ease-out`;
+        });
+    </script>
 </body>
 </html>
