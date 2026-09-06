@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leandro Chagas | dev</title>
+    
+    <!-- Font Awesome e Fontes -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono&display=swap');
@@ -16,14 +18,17 @@
             --accent: #38bdf8;
         }
 
-        body {
+        body, html {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            /* Grid Background IDêntico ao vídeo */
+            
+            /* Grid Background Tech */
             background-image: 
                 linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
@@ -43,27 +48,27 @@
             box-sizing: border-box;
             backdrop-filter: blur(5px);
         }
-        .logo { font-family: 'Space Mono', monospace; font-size: 1.2rem; font-weight: 700; }
+        .logo { font-family: 'Space Mono', monospace; font-size: 1.2rem; font-weight: 700; color: #fff;}
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
         .nav-links a:hover { color: var(--text-main); }
 
-        /* Hero Section Layout */
+        /* Layout Principal */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 10%;
+            padding: 0 5% 0 10%;
             position: relative;
         }
 
-        /* Left Side: Text and Animations */
+        /* Textos e Animações (Esquerda) */
         .hero-text {
             max-width: 600px;
             z-index: 10;
@@ -76,6 +81,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            letter-spacing: 1px;
         }
         .status::before {
             content: '';
@@ -92,8 +98,10 @@
             line-height: 1.1;
             margin: 0 0 10px 0;
             letter-spacing: -2px;
+            color: #ffffff;
         }
-        /* Efeito Typing */
+        
+        /* Efeito Máquina de Escrever */
         .typing-wrapper {
             font-family: 'Space Mono', monospace;
             font-size: 1.5rem;
@@ -101,151 +109,59 @@
             margin-bottom: 2rem;
             min-height: 35px;
         }
+        
         .desc {
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: 1.1rem;
             margin-bottom: 3rem;
             max-width: 500px;
         }
+        
         .tech-stack {
             display: flex;
             gap: 15px;
         }
         .tech-pill {
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.85rem;
             color: var(--text-muted);
             background: rgba(255,255,255,0.02);
             transition: all 0.3s;
+            cursor: default;
         }
         .tech-pill:hover {
             border-color: var(--text-main);
             color: var(--text-main);
+            background: rgba(255,255,255,0.05);
         }
 
-        /* Right Side: 3D Lanyard & Card */
-        .card-scene {
-            perspective: 1500px;
-            width: 400px;
-            height: 600px;
-            display: flex;
-            justify-content: center;
+        /* Container do Canvas Three.js (Direita) */
+        #canvas-container {
+            width: 500px;
+            height: 800px;
             position: relative;
+            cursor: grab;
+            z-index: 5;
         }
-        
-        /* Pêndulo (Balanço da fita) */
-        .pendulum {
-            transform-origin: top center;
-            animation: swing 6s ease-in-out infinite alternate;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
+        #canvas-container:active {
+            cursor: grabbing;
         }
 
-        /* Fita do crachá */
-        .lanyard {
-            width: 25px;
-            height: 180px;
-            background: linear-gradient(to right, #111, #222, #111);
-            position: relative;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-            display: flex;
-            justify-content: center;
-        }
-        .lanyard::after {
-            content: 'GEOF / QMS';
-            position: absolute;
-            color: rgba(255,255,255,0.2);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            top: 20px;
-            letter-spacing: 5px;
-        }
-        .clip {
-            width: 40px;
-            height: 20px;
-            background: #444;
-            border-radius: 5px;
-            margin-top: -5px;
-            z-index: 2;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        /* O Cartão 3D */
-        .id-card-3d {
-            width: 280px;
-            height: 400px;
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 30px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out; /* Suaviza o movimento do mouse */
-            margin-top: -10px;
-        }
-        .id-hole {
-            width: 60px;
-            height: 12px;
-            background: var(--bg-color);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .id-photo {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            filter: grayscale(100%) contrast(1.2);
-            transition: filter 0.3s;
-        }
-        .id-card-3d:hover .id-photo {
-            filter: grayscale(0%);
-        }
-        .id-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .id-role {
-            font-family: 'Space Mono', monospace;
-            color: var(--accent);
-            font-size: 0.8rem;
-            margin-top: 5px;
-        }
-
-        /* Animação do Pêndulo */
-        @keyframes swing {
-            0% { transform: rotate(3deg); }
-            100% { transform: rotate(-3deg); }
-        }
-
-        /* Responsive */
         @media (max-width: 992px) {
-            .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 100px; }
+            .hero { flex-direction: column; justify-content: center; text-align: center; padding-top: 100px; padding-left: 5%; }
             .tech-stack { justify-content: center; flex-wrap: wrap; }
-            .card-scene { margin-top: 50px; height: 500px; }
+            #canvas-container { height: 500px; width: 100%; margin-top: 20px; }
             .nav-links { display: none; }
+            .name { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navegação -->
     <nav>
         <div class="logo">lc.dev</div>
         <div class="nav-links">
@@ -255,7 +171,10 @@
         </div>
     </nav>
 
+    <!-- Seção Principal -->
     <section class="hero">
+        
+        <!-- Textos -->
         <div class="hero-text">
             <div class="status">AVAILABLE FOR WORK</div>
             <h1 class="name">Leandro<br>Chagas</h1>
@@ -265,7 +184,7 @@
             </div>
             
             <p class="desc">
-                Conecto experiência prática em gestão de qualidade (DNV/IMO) com programação para criar automações robustas. Transformo dados complexos e trabalho manual em sistemas eficientes.
+                Desenvolvedor com forte base analítica (DNV/IMO). Transformo dados complexos e processos manuais em automações robustas e sistemas eficientes para o setor industrial e corporativo.
             </p>
             
             <div class="tech-stack">
@@ -275,70 +194,164 @@
             </div>
         </div>
 
-        <!-- Estrutura do Crachá 3D (Substitui o Three.js) -->
-        <div class="card-scene" id="scene">
-            <div class="pendulum">
-                <div class="lanyard"></div>
-                <div class="clip"></div>
-                <div class="id-card-3d" id="card3d">
-                    <div class="id-hole"></div>
-                    <!-- Coloque sua foto na pasta correta -->
-                    <img src="assets/img/sua-foto.jpg" alt="Leandro Chagas" class="id-photo">
-                    <h2 class="id-name">Leandro</h2>
-                    <div class="id-role">Sistemas de Informação</div>
-                </div>
-            </div>
-        </div>
+        <!-- Renderizador 3D do Crachá -->
+        <div id="canvas-container"></div>
     </section>
 
+
+    <!-- Importação da Biblioteca Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <script>
-        // Lógica 1: Efeito Typing (Máquina de Escrever)
+        // ----------------------------------------------------
+        // 1. Efeito Typing (Máquina de Escrever)
+        // ----------------------------------------------------
         const textToType = "Desenvolvedor Júnior _";
         const typeTarget = document.getElementById("typewriter");
-        let i = 0;
+        let typeIndex = 0;
         
         function typeWriter() {
-            if (i < textToType.length) {
-                typeTarget.innerHTML += textToType.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
+            if (typeIndex < textToType.length) {
+                typeTarget.innerHTML += textToType.charAt(typeIndex);
+                typeIndex++;
+                setTimeout(typeWriter, 100); // Velocidade da digitação
             }
         }
-        // Inicia a digitação após 1 segundo
         setTimeout(typeWriter, 1000);
 
-        // Lógica 2: Física 3D Interativa no Crachá
-        const scene = document.getElementById('scene');
-        const card = document.getElementById('card3d');
 
-        scene.addEventListener('mousemove', (e) => {
-            // Pega o tamanho e posição da área interativa
-            const rect = scene.getBoundingClientRect();
-            // Calcula o centro do card
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            // Calcula a posição do mouse em relação ao centro (valores negativos e positivos)
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY;
-            
-            // Define o limite de rotação (dividir por um número maior diminui o efeito)
-            const rotateX = (mouseY / (rect.height / 2)) * -15; 
-            const rotateY = (mouseX / (rect.width / 2)) * 15;
+        // ----------------------------------------------------
+        // 2. Engine 3D com Three.js (O Crachá Interativo)
+        // ----------------------------------------------------
+        const container = document.getElementById('canvas-container');
+        
+        // Configuração de Cena, Câmera e Renderizador WebGL
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+        camera.position.z = 10;
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio); // Deixa nítido em telas Retina
+        container.appendChild(renderer.domElement);
 
-            // Aplica a transformação 3D no cartão
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        // Grupo principal que vai agir como o pêndulo
+        const pendulumGroup = new THREE.Group();
+        // Movemos o eixo de rotação para o topo (fora da tela) para simular o balanço pelo cordão
+        pendulumGroup.position.y = 8; 
+        scene.add(pendulumGroup);
+
+        // O grupo do cartão em si (que fica pendurado embaixo)
+        const cardGroup = new THREE.Group();
+        cardGroup.position.y = -8; // Desce o cartão
+        pendulumGroup.add(cardGroup);
+
+        // Luzes (Essencial para o realismo e reflexos)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(5, 5, 5);
+        scene.add(dirLight);
+
+        // Materiais e Textura
+        const textureLoader = new THREE.TextureLoader();
+        // IMPORTANTE: Insira o caminho real da sua foto aqui. 
+        // Recomenda-se uma foto vertical (formato retrato).
+        const photoTexture = textureLoader.load('assets/img/sua-foto.jpg');
+        
+        // Configura a nitidez da textura
+        photoTexture.minFilter = THREE.LinearFilter;
+
+        // Material Plástico Escuro (Traseira e Bordas)
+        const plasticMaterial = new THREE.MeshStandardMaterial({ 
+            color: 0x111111,
+            roughness: 0.2, // Deixa um pouco brilhante
+            metalness: 0.1
         });
 
-        // Quando o mouse sai da área, o cartão volta suavemente para a posição zero
-        scene.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-            card.style.transition = `transform 0.5s ease`;
+        // Material Frontal (A Foto)
+        const frontMaterial = new THREE.MeshStandardMaterial({ 
+            map: photoTexture,
+            roughness: 0.3
         });
 
-        // Remove a transição suave durante o movimento para não gerar atraso visual (lag)
-        scene.addEventListener('mouseenter', () => {
-            card.style.transition = `transform 0.1s ease-out`;
+        // Geometria do Cartão (Largura, Altura, Espessura)
+        const cardGeometry = new THREE.BoxGeometry(3.5, 5, 0.1);
+        
+        // Array de materiais para BoxGeometry: [Direita, Esquerda, Cima, Baixo, Frente, Trás]
+        const materials = [
+            plasticMaterial, // Dir
+            plasticMaterial, // Esq
+            plasticMaterial, // Cima
+            plasticMaterial, // Baixo
+            frontMaterial,   // Frente (Face 4)
+            plasticMaterial  // Trás
+        ];
+
+        // Cria o Objeto 3D do Cartão e adiciona ao Grupo
+        const cardMesh = new THREE.Mesh(cardGeometry, materials);
+        cardGroup.add(cardMesh);
+
+        // O Cordão (Lanyard)
+        const lanyardGeometry = new THREE.CylinderGeometry(0.1, 0.1, 8, 16);
+        const lanyardMaterial = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.9 });
+        const lanyard = new THREE.Mesh(lanyardGeometry, lanyardMaterial);
+        lanyard.position.y = 4; // Posiciona logo acima do cartão
+        cardGroup.add(lanyard);
+
+        // O Clipe/Presilha de Metal
+        const clipGeom = new THREE.BoxGeometry(0.8, 0.4, 0.15);
+        const clipMat = new THREE.MeshStandardMaterial({ color: 0x555555, metalness: 0.8, roughness: 0.2 });
+        const clip = new THREE.Mesh(clipGeom, clipMat);
+        clip.position.y = 2.6; // No topo do cartão
+        cardGroup.add(clip);
+
+        // Variáveis de Interação e Física
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        // Captura o movimento do mouse
+        document.addEventListener('mousemove', (event) => {
+            // Normaliza as coordenadas do mouse para valores entre -1 e 1
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        const clock = new THREE.Clock();
+
+        // Loop de Renderização Contínua (Animação)
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // 1. Simulação do balanço do Pêndulo contínuo (vento/gravidade)
+            pendulumGroup.rotation.z = Math.sin(elapsedTime * 1.5) * 0.05;
+            pendulumGroup.rotation.x = Math.sin(elapsedTime * 1.2) * 0.05;
+
+            // 2. Interação com o Mouse (Lerp para suavizar o movimento)
+            // O cartão gira para "olhar" para o mouse
+            targetX = mouseX * 0.5; // Limita a angulação máxima
+            targetY = mouseY * 0.5;
+
+            cardGroup.rotation.y += (targetX - cardGroup.rotation.y) * 0.05;
+            cardGroup.rotation.x += (-targetY - cardGroup.rotation.x) * 0.05;
+
+            // Renderiza o frame
+            renderer.render(scene, camera);
+        }
+
+        // Inicia a animação
+        animate();
+
+        // Responsividade do Canvas 3D caso a tela seja redimensionada
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
         });
     </script>
 </body>
